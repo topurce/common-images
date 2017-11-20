@@ -39,15 +39,13 @@ RUN curl -fSL -o /usr/local/bin/yarn "https://github.com/yarnpkg/yarn/releases/d
 
 RUN npm config set registry https://registry.npm.taobao.org
 
-COPY fake-project $JENKINS_HOME/fake-project
 
 RUN apk add --no-cache git bc && \
     curl -sL /tmp/sbt-${SBT_VERSION}.tgz "https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" | \
     gunzip | tar -x -C /usr/local
 
-RUN chown -R jenkins $JENKINS_HOME
-
 USER jenkins
+COPY fake-project $JENKINS_HOME/fake-project
 RUN cd $JENKINS_HOME/fake-project && \
     sbt -Dsbt.log.noformat=true clean +compile && \
     rm -rf $JENKINS_HOME/fake-project
