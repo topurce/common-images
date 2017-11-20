@@ -43,8 +43,9 @@ COPY fake-project $JENKINS_HOME/fake-project
 
 RUN apk add --no-cache git bc && \
     curl -sL /tmp/sbt-${SBT_VERSION}.tgz "https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" | \
-    gunzip | tar -x -C /usr/local && \
-    chown -R jenkins:jenkins $JENKINS_HOME
+    gunzip | tar -x -C /usr/local
+
+RUN chown -R jenkins $JENKINS_HOME
 
 USER jenkins
 RUN cd $JENKINS_HOME/fake-project && \
