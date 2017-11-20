@@ -47,7 +47,7 @@ RUN apk add --no-cache git bc && \
 USER jenkins
 COPY fake-project $JENKINS_HOME/fake-project
 RUN cd $JENKINS_HOME/fake-project && \
-    sbt -Dsbt.log.noformat=true clean +compile && \
+    sbt -Dsbt.log.noformat=true clean +compile
 
 USER root
 RUN rm -rf $JENKINS_HOME/fake-project
