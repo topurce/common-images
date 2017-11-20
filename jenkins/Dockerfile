@@ -48,4 +48,9 @@ USER jenkins
 COPY fake-project $JENKINS_HOME/fake-project
 RUN cd $JENKINS_HOME/fake-project && \
     sbt -Dsbt.log.noformat=true clean +compile && \
-    rm -rf $JENKINS_HOME/fake-project
+
+USER root
+RUN rm -rf $JENKINS_HOME/fake-project
+
+USER jenkins
+
