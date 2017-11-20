@@ -6,7 +6,6 @@ ENV NODE_VERSION 8.9.1
 ENV SBT_VERSION=1.0.3 \
     SBT_HOME=/usr/local/sbt
 ENV PATH=${SBT_HOME}/bin:${PATH}
-ENV JENKINS_HOME /var/jenkins_home
 
 # Switch to root user
 USER root
@@ -49,8 +48,5 @@ RUN apk add --no-cache git bc && \
 
 USER jenkins
 RUN cd $JENKINS_HOME/fake-project && \
-    echo sbt.version=0.13.16 > project/build.properties && \
-    sbt -Dsbt.log.noformat=true clean +compile && \
-    echo sbt.version=${SBT_VERSION} > project/build.properties && \
     sbt -Dsbt.log.noformat=true clean +compile && \
     rm -rf $JENKINS_HOME/fake-project
