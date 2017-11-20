@@ -6,6 +6,7 @@ ENV NODE_VERSION 8.9.1
 ENV SBT_VERSION=1.0.3 \
     SBT_HOME=/usr/local/sbt
 ENV PATH=${SBT_HOME}/bin:${PATH}
+ENV JENKINS_HOME /var/jenkins_home
 
 # Switch to root user
 USER root
@@ -44,7 +45,7 @@ COPY fake-project $JENKINS_HOME/fake-project
 RUN apk add --no-cache git bc && \
     curl -sL /tmp/sbt-${SBT_VERSION}.tgz "https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" | \
     gunzip | tar -x -C /usr/local && \
-    chown -R jenkins $JENKINS_HOME
+    chown -R jenkins:jenkins $JENKINS_HOME
 
 USER jenkins
 RUN cd $JENKINS_HOME/fake-project && \
