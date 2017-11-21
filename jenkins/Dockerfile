@@ -46,6 +46,9 @@ RUN apk add --no-cache git bc && \
     curl -sL /tmp/sbt-${SBT_VERSION}.tgz "https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" | \
     gunzip | tar -x -C /usr/local
 
+RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.03.1-ce.tgz 
+    && tar --strip-components=1 -xvzf docker-17.03.1-ce.tgz -C /usr/local/bin
+
 USER jenkins
 COPY fake-project $JENKINS_HOME/fake-project
 RUN cd $JENKINS_HOME/fake-project && \
