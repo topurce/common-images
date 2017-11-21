@@ -6,6 +6,7 @@ ENV NODE_VERSION 8.9.1
 ENV SBT_VERSION=1.0.3 \
     SBT_HOME=/usr/local/sbt
 ENV PATH=${SBT_HOME}/bin:${PATH}
+ENV GIT_SSL_NO_VERIFY=true
 
 # Switch to root user
 USER root
