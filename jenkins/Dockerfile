@@ -38,7 +38,7 @@ RUN curl -fSL -o /usr/local/bin/yarn "https://github.com/yarnpkg/yarn/releases/d
     && chmod +x /usr/local/bin/yarn
 
 RUN npm config set registry https://registry.npm.taobao.org
-RUN npm npm install -g gitbook-cli gitbook gulp
+RUN npm install -g gitbook-cli gitbook gulp
 
 
 RUN apk add --no-cache git bc && \
